@@ -279,6 +279,12 @@ class Command(BaseCommand):
             ),
         )
 
+        print 'Replacement 1'
+        try:
+            server.replace_in_file(session_id, apache_conf, replace_script_alias)
+        except Exception as e:
+            print e
+
         replace_daemon_process = (
             '/home/{username}/webapps/{username}/myproject'.format(
                 username=webfaction_username
@@ -287,8 +293,9 @@ class Command(BaseCommand):
             )
         )
 
+        print 'Replacement 2'
         try:
-            server.replace_in_file(session_id, apache_conf, replace_script_alias, replace_daemon_process)
+            server.replace_in_file(session_id, apache_conf, replace_daemon_process)
         except Exception as e:
             print e
 
